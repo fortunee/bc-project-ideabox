@@ -1,0 +1,84 @@
+.no-margin{
+	margin: 0px;
+}
+
+.no-padding{
+	padding: 0px;
+}
+
+body{
+	background:rgba(15, 110, 142, 0.1) url() no-repeat fixed;
+	background-size: 100%;
+}
+
+#logo{
+	font-weight: bolder;
+	text-shadow: 0px 1px 2px red;
+	color: white;
+}
+
+.navstyle {
+	background: rgb(56, 75, 208);
+}
+
+
+.navstyle-links a:hover{
+	color: darkblue;
+    transition: all .3s ease-in-out;
+    background: rgba(15, 110, 142, 0.1);
+}
+
+.nav a{
+	color: white;
+	margin: 0;
+	padding: 0;
+}
+
+.error_msg{
+	float: right;
+}
+
+.welcome{
+	background:url(../images/backg.jpg) fixed no-repeat;
+	background-size: 100%;
+	min-width: 800px;
+}
+
+.small{
+	text-decoration: underline;
+}
+
+.jumbotron{
+	 background: rgba(0, 0, 1, .7);
+	 text-align: center;
+	 color: #fff;
+	 text-shadow:0px 1px 0px darkblue;
+	 font-weight: bolder;
+	 height: 540px;
+}
+
+.hello{
+	vertical-align: center;
+
+}
+.footerstyle{
+	text-align: center;
+	font-weight: bolder;
+	color: blue;
+	margin-top: 50px;
+}
+
+.signup{
+	text-align: center;
+	margin-top: 50px;
+}
+
+.login{
+	text-align: center;
+	margin-top: 70px;
+}
+
+.home{
+	height: 100px;
+	border: 1px solid blue;
+}
