@@ -79,6 +79,13 @@ body{
 }
 
 .home{
-	height: 100px;
 	border: 1px solid blue;
+	color:#000;
+}
+
+.latest{
+	border-right:1px solid skyblue;
+}
+
+.trending{
 }

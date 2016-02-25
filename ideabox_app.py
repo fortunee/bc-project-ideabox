@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash, g
-import sqlite3
+from flask import Flask, render_template, request,\
+ 				  redirect, url_for, session, flash, g
 from functools import wraps
+import sqlite3
 
 # create the application object
 app = Flask(__name__)
@@ -8,16 +9,17 @@ app = Flask(__name__)
 #session key
 app.secret_key = "my God is alive"
 
-app.database = "members.db"
+app.database = "./members.db"
 
 # login required decorator
 def login_required(f):
 	@wraps(f)
 	def wrap(*args, **kwargs):
-		if "logged_in" in session:
+		if 'logged_in' in session:
 			return f(*args, **kwargs)
 		else:
-			return redirect(url_for('welcome'))
+			flash('You need to login first')
+			return redirect(url_for('login'))
 	return wrap
 
 # handles the welcome page
@@ -25,26 +27,28 @@ def login_required(f):
 def welcome():
 	return render_template('welcome.html', title="Welcome to Ideabox")
 
+
 # handles the signup page
-@app.route("/signup")
+@app.route("/signup", methods=['GET', 'POST'])
 def signup():
+	if request.method == "POST":
+		g.db = connect_db()
+		username = request.form['username']
+		email = request.form['email']
+		password = request.form['password']
 	return render_template('signup.html', title="Signup")
 
 # handles the login page
 @app.route("/login", methods=['GET', 'POST'])
 def login():
 	error_msg = None
-	g.db = connect_db()
 	if request.method == 'POST':
-		cur = g.db.execute("SELECT * FROM idea WHERE email = (%s)",
-							thwart(request.form['username']))
-		cur = g.db.fetchall()[3]
-		if request.form['username'] != username \
-		or request.form['password'] != password:
-			error_msg = 'Invalid login credentials, try again'
+		if request.form['username'] != 'admin' \
+						or request.form['password'] != 'admin':
+			error = 'Invalid credentials. Please try again.'
 		else:
 			session['logged_in'] = True
-			flash('successfully logged in')
+			flash("You're logged in")
 			return redirect(url_for('home'))
 	return render_template('login.html', error_msg=error_msg, title="Please login")
 
@@ -53,10 +57,10 @@ def login():
 @login_required
 def home():
 	g.db = connect_db()
-	cur = g.db.execute('select * from posts')
-	posts = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
+	cur = g.db.execute('select * from ideas')
+	ideas = [dict(title=row[0], description=row[1]) for row in cur.fetchall()]
 	g.db.close()
-	return render_template('index.html', posts=posts, title="Ideabox | Home")
+	return render_template('index.html', ideas=ideas, title="Ideabox | Home")
 
 # handles the post making page
 @app.route('/post')
