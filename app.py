@@ -51,7 +51,7 @@ def login():
 	if request.method == 'POST':	
 		if request.form['username'] != 'fortune' \
 			or request.form['password'] != 'test':
-			error = 'Invalid login'
+			error_msg = 'Invalid login'
 		else:
 			session['logged_in'] = True
 			flash("login successful")
