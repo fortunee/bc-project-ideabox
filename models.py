@@ -1,4 +1,5 @@
-from ideabox_app import db
+from flask.ext.sqlalchemy import SQLAlchemy
+from app import db
 
 class IdeaPost(db.Model):
 
@@ -16,11 +17,9 @@ class IdeaPost(db.Model):
 		return "{}-{}".format(self.title, self.description)
 
 
-	__tablename__ = "posts"
-
 
 class User(db.Model):
-	
+
     __tablename__ = 'user'
 
     email = db.Column(db.String, primary_key=True)

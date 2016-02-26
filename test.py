@@ -1,4 +1,4 @@
-from ideabox_app import app 
+from app import app 
 import unittest
 
 

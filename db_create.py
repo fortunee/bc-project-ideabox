@@ -1,4 +1,4 @@
-from ideabox_app import db
+from app import db
 from models import IdeaPost
 
 # create the db and db tables
