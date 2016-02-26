@@ -45,8 +45,6 @@ def signup():
 # handles the login page
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-
-	print 'route hit'
 	error_msg = None
 	if request.method == 'POST':	
 		if request.form['username'] != 'fortune' \
