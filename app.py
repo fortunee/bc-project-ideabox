@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask.ext.sqlalchemy import SQLAlchemy 
 from functools import wraps
-#import sqlite3
+
 
 
 # create the application object
@@ -45,21 +45,15 @@ def signup():
 # handles the login page
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-
-	print 'route hit'
 	error_msg = None
-	#print request.method
-	if request.method == 'POST':
-		user = User.query.get(request.form['email'])
-	 	print user
-	
-		# if request.form['username'] != 'admin' \
-		# 	or request.form['password'] != 'admin':
-		# 	error = 'Invalid login'
-		# else:
-		# 	session['logged_in'] = True
-		# 	flash("login successful")
-		# 	return redirect(url_for('home'))
+	if request.method == 'POST':	
+		if request.form['username'] != 'fortune' \
+			or request.form['password'] != 'test':
+			error_msg = 'Invalid login'
+		else:
+			session['logged_in'] = True
+			flash("login successful")
+			return redirect(url_for('home'))
 
 	return render_template('login.html', error_msg=error_msg, title="Please login")
 
