@@ -8,7 +8,7 @@ SQLAlchemy==1.0.12
 WTForms==2.1
 Werkzeug==3.0.3
 argparse==1.2.1
-gunicorn==19.4.5
+gunicorn==22.0.0
 itsdangerous==0.24
 passlib==1.6.5
 wsgiref==0.1.2
